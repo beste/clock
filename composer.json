@@ -1,0 +1,55 @@
+{
+    "name": "beste/clock",
+    "type": "library",
+    "description": "A collection of Clock implementations",
+    "keywords": ["clock", "clock-interface", "psr20", "psr-20"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérôme Gamez",
+            "email": "jerome@gamez.name"
+        }
+    ],
+    "require": {
+        "php": "~7.4.0 || ~8.0.0 || ~8.1.0"
+    },
+    "require-dev": {
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.0",
+        "phpunit/phpunit": "^9.5.10",
+        "psalm/plugin-phpunit": "^0.16.0",
+        "vimeo/psalm": "^4.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "Beste\\Clock\\": "src/Clock"
+        },
+        "files": [
+            "src/psr-polyfill.php",
+            "src/Clock.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Beste\\Clock\\Tests\\": "tests/Clock"
+        }
+    },
+    "provide": {
+        "psr/clock-implementation": "1.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": [
+            "@phpstan",
+            "@psalm",
+            "@phpunit"
+        ],
+        "phpunit": "vendor/bin/phpunit",
+        "phpstan": "vendor/bin/phpstan analyse",
+        "psalm": "vendor/bin/psalm"
+    }
+}

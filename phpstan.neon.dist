@@ -1,0 +1,11 @@
+parameters:
+	level: max
+
+	paths:
+		- src/
+		- tests/
+
+	tmpDir: .build/phpstan/
+
+	bootstrapFiles:
+		- ./src/psr-polyfill.php
