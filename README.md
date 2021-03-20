@@ -8,6 +8,8 @@ A collection of Clock implementations.
 - [Installation](#installation)
 - [Clocks](#clocks)
     - [`SystemClock`](#systemclock) - Time, as your computer (k)nows it
+    - [`LocalizedClock`](#localizedclock) - A clock in a(nother) time zone
+    
 
 ## Introduction
 
@@ -44,6 +46,23 @@ printf("Now it's %s\n", $clock->now()->format('Y-m-d H:i:s T (P)'));
 date_default_timezone_set('Europe/Berlin');
 
 printf("Now it's %s\n", $clock->now()->format('Y-m-d H:i:s T (P)'));
+```
+
+### `LocalizedClock`
+
+A localized clock is aware of the time zone in which it is located. While the time zone of the `SystemClock` is
+determined from the environment (your PHP configuration), this clock uses the time zone that you initialize it with.
+
+```php
+# examples/localized_clock.php
+
+use Beste\Clock\LocalizedClock;
+
+$berlin = LocalizedClock::in('Europe/Berlin');
+$denver = LocalizedClock::in(new DateTimeZone('America/Denver'));
+
+printf("Berlin: %s\n", $berlin->now()->format('Y-m-d H:i:s T (P)'));
+printf("Denver: %s\n", $denver->now()->format('Y-m-d H:i:s T (P)'));
 ```
 
 ## Running tests
