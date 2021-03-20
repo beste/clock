@@ -9,7 +9,7 @@ A collection of Clock implementations.
 - [Clocks](#clocks)
     - [`SystemClock`](#systemclock) - Time, as your computer (k)nows it
     - [`LocalizedClock`](#localizedclock) - A clock in a(nother) time zone
-    
+    - [`UTCClock`](#utcclock) - The clock that you should™ use
 
 ## Introduction
 
@@ -63,6 +63,28 @@ $denver = LocalizedClock::in(new DateTimeZone('America/Denver'));
 
 printf("Berlin: %s\n", $berlin->now()->format('Y-m-d H:i:s T (P)'));
 printf("Denver: %s\n", $denver->now()->format('Y-m-d H:i:s T (P)'));
+```
+
+### `UTCClock`
+
+`UTC` is the abbreviation for [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time)
+and a special kind of time zone that is not affected by daylight saving time. It is commonly used for the communication
+of time across different systems (e.g. between your PHP application and a database, or between a backend
+and a frontend). An `UTCClock` instance behaves exactly the same as an instance of `LocalizedClock::in('UTC')`.
+
+```php
+# examples/utc_clock.php
+
+use Beste\Clock\UTCClock;
+
+$clock = UTCClock::create();
+
+$anotherTimeZone = 'Africa/Casablanca';
+
+date_default_timezone_set($anotherTimeZone);
+
+printf("The system time zone is %s.\n", $anotherTimeZone);
+printf("The clock's time zone is always %s.\n", $clock->now()->getTimezone()->getName());
 ```
 
 ## Running tests
