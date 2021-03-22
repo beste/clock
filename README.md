@@ -10,6 +10,7 @@ A collection of Clock implementations.
     - [`SystemClock`](#systemclock) - Time, as your computer (k)nows it
     - [`LocalizedClock`](#localizedclock) - A clock in a(nother) time zone
     - [`UTCClock`](#utcclock) - The clock that you should™ use
+    - [`FrozenClock`](#frozenclock) - A clock that stopped moving (perfect for tests)
 
 ## Introduction
 
@@ -85,6 +86,30 @@ date_default_timezone_set($anotherTimeZone);
 
 printf("The system time zone is %s.\n", $anotherTimeZone);
 printf("The clock's time zone is always %s.\n", $clock->now()->getTimezone()->getName());
+```
+
+### `FrozenClock`
+
+A frozen clock doesn't move - the time we set it with will stay the same... unless we change it. That makes the
+frozen clock perfect for testing the behaviour of your time-based use cases, for example in Unit Tests.
+
+```php
+# examples/frozen_clock.php
+
+use Beste\Clock\FrozenClock;
+use Beste\Clock\SystemClock;
+
+$frozenClock = FrozenClock::withNowFrom(SystemClock::create());
+
+printf("The clock is frozen at %s", $frozenClock->now()->format('Y-m-d H:i:s T (P)'));
+sleep(1);
+printf("It's one second later, but the clock is still frozen at %s", $frozenClock->now()->format('Y-m-d H:i:s T (P)'));
+
+$frozenClock->setTo($frozenClock->now()->modify('-5 minutes'));
+printf("%s", $frozenClock->now()->format('Y-m-d H:i:s T (P)'));
+
+$frozenUTC = FrozenClock::fromUTC();
+printf("Now (UTC) was frozen just now™ to %s", $frozenUTC->now()->format('Y-m-d H:i:s T (P)'));
 ```
 
 ## Running tests
