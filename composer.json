@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "php": "~7.4.0 || ~8.0.0 || ~8.1.0"
+        "php": "~7.4.0 || ~8.0.0 || ~8.1.0",
+        "stella-maris/clock": "^0.1.4"
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.1",
@@ -27,7 +28,6 @@
             "Beste\\Clock\\": "src/Clock"
         },
         "files": [
-            "src/psr-polyfill.php",
             "src/Clock.php"
         ]
     },
@@ -40,7 +40,10 @@
         "psr/clock-implementation": "1.0"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     },
     "scripts": {
         "test": [

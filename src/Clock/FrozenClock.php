@@ -7,7 +7,7 @@ namespace Beste\Clock;
 use Beste\Clock;
 use DateTimeImmutable;
 use DateTimeZone;
-use Psr\Clock\ClockInterface;
+use StellaMaris\Clock\ClockInterface;
 
 final class FrozenClock implements Clock
 {
