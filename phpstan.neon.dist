@@ -7,5 +7,3 @@ parameters:
 
 	tmpDir: .build/phpstan/
 
-	bootstrapFiles:
-		- ./src/psr-polyfill.php
