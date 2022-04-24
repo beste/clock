@@ -15,6 +15,7 @@ A collection of Clock implementations.
     - [`UTCClock`](#utcclock) - The clock that you should™ use
     - [`FrozenClock`](#frozenclock) - A clock that stopped moving (perfect for tests)
     - [`MinuteClock`](#minuteclock) - Who cares about seconds or even less?
+    - [`WrappingClock`](#wrappingclock) - Allows wrapping a non-clock with a `now()` method in a clock
 - [Running Tests](#running-tests)
     
 ## Installation
@@ -136,7 +137,42 @@ printf("For %s, the minute clock still returns %s\n",
     $frozenClock->now()->format('H:i:s'),
     $clock->now()->format('H:i:s')
 );
+```
 
+### `WrappingClock`
+
+If you already have an object with a `now()` method returning a `DateTimeImmutable` object, you can wrap it 
+in a `WrappingClock` to make it a "real" Clock.
+
+as a "real" clock.
+
+```php
+# examples/wrapping_clock.php
+
+use Beste\Clock\WrappingClock;
+
+// Create a frozen $now so that we can test the wrapping clock.
+$now = new DateTimeImmutable('2012-04-24 12:00:00');
+
+// Create an object that is NOT a clock, but has a now() method returning the frozen $now.
+$clock = new class($now) {
+    private \DateTimeImmutable $now;
+
+    public function __construct(\DateTimeImmutable $now)
+    {
+        $this->now = $now;
+    }
+
+    public function now(): \DateTimeImmutable
+    {
+        return $this->now;
+    }
+};
+
+// We can now wrap the object in a clock.
+$wrappedClock = WrappingClock::wrapping($clock);
+
+assert($now->format(DATE_ATOM) === $wrappedClock->now()->format(DATE_ATOM));
 ```
 
 ## Running tests
