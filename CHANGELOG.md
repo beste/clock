@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 2.2.0 - 2022-11-04
 This release drops support for PHP <8.1.
 
 ## 2.1.0 - 2022-04-22
