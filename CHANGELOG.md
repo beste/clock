@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Unreleased
+This release drops support for PHP <8.1.
+
 ## 2.1.0 - 2022-04-22
 Adds the `WrappingClock` which allows using an object with a `now()` method returning a `DateTimeImmutable` object
 as a "real" clock.
