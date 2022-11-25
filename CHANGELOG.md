@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.3.0 - 2022-11-25
+This release re-introduces support for PHP ^8.0 and implements the freshly released `psr/clock` (PSR-20) directly.
+
 ## 2.2.0 - 2022-11-04
 This release drops support for PHP <8.1.
 
