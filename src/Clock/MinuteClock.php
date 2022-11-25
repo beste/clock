@@ -6,7 +6,7 @@ namespace Beste\Clock;
 
 use Beste\Clock;
 use DateTimeImmutable;
-use Psr\Clock\ClockInterface;
+use StellaMaris\Clock\ClockInterface;
 
 final class MinuteClock implements Clock
 {
