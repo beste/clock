@@ -6,7 +6,8 @@ namespace Beste\Clock;
 
 use Beste\Clock;
 use DateTimeImmutable;
-use StellaMaris\Clock\ClockInterface;
+use InvalidArgumentException;
+use Psr\Clock\ClockInterface;
 
 final class WrappingClock implements Clock
 {
@@ -24,11 +25,11 @@ final class WrappingClock implements Clock
         }
 
         if (!method_exists($clock, 'now')) {
-            throw new \InvalidArgumentException('$clock must implement StellaMaris\Clock\ClockInterface or have a now() method');
+            throw new InvalidArgumentException('$clock must implement '.ClockInterface::class.' or have a now() method');
         }
 
         if (!($clock->now() instanceof DateTimeImmutable)) {
-            throw new \InvalidArgumentException('$clock->now() must return a DateTimeImmutable');
+            throw new InvalidArgumentException('$clock->now() must return a DateTimeImmutable');
         }
 
         $wrappedClock = new class($clock) implements ClockInterface {
@@ -39,13 +40,13 @@ final class WrappingClock implements Clock
                 $this->clock = $clock;
             }
 
-            public function now(): \DateTimeImmutable
+            public function now(): DateTimeImmutable
             {
                 assert(method_exists($this->clock, 'now'));
 
                 $now = $this->clock->now();
 
-                assert($now instanceof \DateTimeImmutable);
+                assert($now instanceof DateTimeImmutable);
 
                 return $now;
             }

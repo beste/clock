@@ -7,7 +7,7 @@ namespace Beste\Clock\Tests;
 use Beste\Clock\FrozenClock;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use StellaMaris\Clock\ClockInterface;
+use Psr\Clock\ClockInterface;
 
 /**
  * @internal
