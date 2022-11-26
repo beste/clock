@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 3.0.0 - 2022-11-26
 This release replaces `stella-maris/clock` with `psr/clock`.
 
 ## 2.3.1 - 2022-11-25
