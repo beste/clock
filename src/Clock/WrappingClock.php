@@ -6,7 +6,7 @@ namespace Beste\Clock;
 
 use Beste\Clock;
 use DateTimeImmutable;
-use StellaMaris\Clock\ClockInterface;
+use Psr\Clock\ClockInterface;
 
 final class WrappingClock implements Clock
 {

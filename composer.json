@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "stella-maris/clock": "^0.1.6"
+        "psr/clock": "^1.0"
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.2",

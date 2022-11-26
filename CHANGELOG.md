@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Unreleased
+This release replaces `stella-maris/clock` with `psr/clock`.
+
 ## 2.3.1 - 2022-11-25
 This release reverts the change to implement `psr/clock` directly, to not break dependents who rely on `stella-maris/clock`
 
