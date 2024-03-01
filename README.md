@@ -4,7 +4,7 @@
 [![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/beste/clock)](https://packagist.org/packages/beste/clock)
 [![Tests](https://github.com/beste/clock/actions/workflows/tests.yml/badge.svg)](https://github.com/beste/clock/actions/workflows/tests.yml)
 
-A collection of Clock implementations.
+A collection of [PSR-20](https://www.php-fig.org/psr/psr-20/) Clock implementations.
 
 ## Table of Contents
 
