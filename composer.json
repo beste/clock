@@ -19,9 +19,7 @@
         "phpstan/phpstan": "^1.11.10",
         "phpstan/phpstan-phpunit": "^1.4.0",
         "phpstan/phpstan-strict-rules": "^1.6.0",
-        "phpunit/phpunit": "^9.6.20",
-        "psalm/plugin-phpunit": "^0.16.1",
-        "vimeo/psalm": "^4.30"
+        "phpunit/phpunit": "^9.6.20"
     },
     "autoload": {
         "psr-4": {
@@ -48,11 +46,9 @@
     "scripts": {
         "test": [
             "@phpstan",
-            "@psalm",
             "@phpunit"
         ],
         "phpunit": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan analyse",
-        "psalm": "vendor/bin/psalm"
+        "phpstan": "vendor/bin/phpstan analyse"
     }
 }

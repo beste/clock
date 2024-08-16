@@ -6,4 +6,3 @@
 /.gitignore                     export-ignore
 /phpstan.neon.dist              export-ignore
 /phpunit.xml.dist               export-ignore
-/psalm.xml.dist                 export-ignore
