@@ -15,13 +15,13 @@
         "psr/clock": "^1.0"
     },
     "require-dev": {
-        "phpstan/extension-installer": "^1.2",
-        "phpstan/phpstan": "^1.9.1",
-        "phpstan/phpstan-phpunit": "^1.2.2",
-        "phpstan/phpstan-strict-rules": "^1.4.4",
-        "phpunit/phpunit": "^9.5.26",
+        "phpstan/extension-installer": "^1.4.1",
+        "phpstan/phpstan": "^1.11.10",
+        "phpstan/phpstan-phpunit": "^1.4.0",
+        "phpstan/phpstan-strict-rules": "^1.6.0",
+        "phpunit/phpunit": "^9.6.20",
         "psalm/plugin-phpunit": "^0.16.1",
-        "vimeo/psalm": "^4.29"
+        "vimeo/psalm": "^4.30"
     },
     "autoload": {
         "psr-4": {
