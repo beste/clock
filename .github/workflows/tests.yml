@@ -11,7 +11,7 @@ on:
 jobs:
   tests:
     name: PHP ${{ matrix.php }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -21,6 +21,9 @@ jobs:
           - "8.2"
           - "8.3"
           - "8.4"
+        include:
+          - php: "8.5"
+            composer-options: "--ignore-platform-reqs"
 
     steps:
       - name: Checkout code
