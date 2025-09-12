@@ -6,6 +6,8 @@ namespace Beste\Clock\Tests;
 
 use Beste\Clock\FrozenClock;
 use Beste\Clock\WrappingClock;
+use DateTimeImmutable;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +20,7 @@ final class WrappingClockTest extends TestCase
      * @test
      *
      * @covers ::__construct
-     * @covers ::create
+     * @covers ::wrapping
      * @covers ::now
      */
     public function itWrapsAClockInterface(): void
@@ -36,23 +38,21 @@ final class WrappingClockTest extends TestCase
     /**
      * @test
      *
-     * @covers ::__construct
-     * @covers ::create
-     * @covers ::now
+     * @covers ::wrapping
      */
     public function itWrapsAnObjectWithANowMethod(): void
     {
         $now = FrozenClock::fromUTC()->now();
 
         $clock = new class($now) {
-            private \DateTimeImmutable $now;
+            private DateTimeImmutable $now;
 
-            public function __construct(\DateTimeImmutable $now)
+            public function __construct(DateTimeImmutable $now)
             {
                 $this->now = $now;
             }
 
-            public function now(): \DateTimeImmutable
+            public function now(): DateTimeImmutable
             {
                 return $this->now;
             }
@@ -69,7 +69,7 @@ final class WrappingClockTest extends TestCase
     /**
      * @test
      *
-     * @covers ::create
+     * @covers ::wrapping
      */
     public function itRejectsObjectsWithANowMethodReturningANonDateTimeImmutable(): void
     {
@@ -80,7 +80,7 @@ final class WrappingClockTest extends TestCase
             }
         };
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('$clock->now() must return a DateTimeImmutable');
 
         WrappingClock::wrapping($clock);

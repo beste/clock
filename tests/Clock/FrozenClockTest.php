@@ -32,10 +32,10 @@ final class FrozenClockTest extends TestCase
     /**
      * @test
      *
-     * @uses \Beste\Clock\FrozenClock::__construct
-     * @uses \Beste\Clock\FrozenClock::fromUTC()
+     * @uses ::__construct
+     * @uses ::fromUTC
      *
-     * @covers ::now()
+     * @covers ::now
      */
     public function itReturnsAnEqualNowButNotTheSame(): void
     {
@@ -51,8 +51,8 @@ final class FrozenClockTest extends TestCase
     /**
      * @test
      *
-     * @uses \Beste\Clock\FrozenClock::__construct
-     * @uses \Beste\Clock\FrozenClock::now
+     * @uses ::__construct
+     * @uses ::now
      *
      * @covers ::withNowFrom
      */
@@ -74,8 +74,8 @@ final class FrozenClockTest extends TestCase
     /**
      * @test
      *
-     * @uses \Beste\Clock\FrozenClock::__construct
-     * @uses \Beste\Clock\FrozenClock::now
+     * @uses ::__construct
+     * @uses ::now
      *
      * @covers ::fromUTC
      */
@@ -90,9 +90,9 @@ final class FrozenClockTest extends TestCase
     /**
      * @test
      *
-     * @uses \Beste\Clock\FrozenClock::__construct
-     * @uses \Beste\Clock\FrozenClock::at
-     * @uses \Beste\Clock\FrozenClock::now
+     * @uses ::__construct
+     * @uses ::at
+     * @uses ::now
      *
      * @covers ::setTo
      */

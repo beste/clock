@@ -16,9 +16,9 @@
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.4.1",
-        "phpstan/phpstan": "^1.11.10",
-        "phpstan/phpstan-phpunit": "^1.4.0",
-        "phpstan/phpstan-strict-rules": "^1.6.0",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^9.6.20"
     },
     "autoload": {
