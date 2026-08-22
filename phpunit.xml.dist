@@ -1,9 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.5/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         cacheResultFile=".build/phpunit/phpunit.cache"
-         beStrictAboutCoversAnnotation="true"
+         cacheDirectory=".build/phpunit/cache"
+         beStrictAboutCoverageMetadata="true"
          colors="true"
 >
     <testsuites>
@@ -12,10 +12,10 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
+    <source>
         <include>
-            <directory>src/Clock</directory>
+            <directory>src</directory>
         </include>
-    </coverage>
+    </source>
 
 </phpunit>

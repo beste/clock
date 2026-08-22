@@ -7,18 +7,17 @@ namespace Beste\Clock\Tests;
 use Beste\Clock\LocalizedClock;
 use DateTimeZone;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversDefaultClass \Beste\Clock\LocalizedClock
  */
+#[CoversClass(LocalizedClock::class)]
 final class LocalizedClockTest extends TestCase
 {
-    /**
-     * @test
-     * @covers ::in
-     */
+    #[Test]
     public function itRejectsAnInvalidTimeZone(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -26,12 +25,7 @@ final class LocalizedClockTest extends TestCase
         LocalizedClock::in('invalid');
     }
 
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::in
-     * @covers ::now
-     */
+    #[Test]
     public function itUsesTheGivenTimeZone(): void
     {
         $timeZone = new DateTimeZone('Asia/Bangkok');
@@ -41,12 +35,7 @@ final class LocalizedClockTest extends TestCase
         self::assertSame($timeZone->getName(), $now->getTimezone()->getName());
     }
 
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::in
-     * @covers ::now
-     */
+    #[Test]
     public function itAcceptsTheTimeZoneAsAString(): void
     {
         $timeZone = 'Pacific/Guam';

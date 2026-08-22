@@ -8,21 +8,19 @@ use Beste\Clock\FrozenClock;
 use Beste\Clock\WrappingClock;
 use DateTimeImmutable;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversDefaultClass \Beste\Clock\WrappingClock
  */
+#[CoversClass(WrappingClock::class)]
+#[UsesClass(FrozenClock::class)]
 final class WrappingClockTest extends TestCase
 {
-    /**
-     * @test
-     *
-     * @covers ::__construct
-     * @covers ::wrapping
-     * @covers ::now
-     */
+    #[Test]
     public function itWrapsAClockInterface(): void
     {
         $clock = FrozenClock::fromUTC();
@@ -35,11 +33,7 @@ final class WrappingClockTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     *
-     * @covers ::wrapping
-     */
+    #[Test]
     public function itWrapsAnObjectWithANowMethod(): void
     {
         $now = FrozenClock::fromUTC()->now();
@@ -66,11 +60,7 @@ final class WrappingClockTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     *
-     * @covers ::wrapping
-     */
+    #[Test]
     public function itRejectsObjectsWithANowMethodReturningANonDateTimeImmutable(): void
     {
         $clock = new class() {

@@ -6,30 +6,23 @@ namespace Beste\Clock\Tests;
 
 use Beste\Clock\MinuteClock;
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Clock\ClockInterface;
 
 /**
  * @internal
- * @coversDefaultClass \Beste\Clock\MinuteClock
  */
+#[CoversClass(MinuteClock::class)]
 final class MinuteClockTest extends TestCase
 {
-    /**
-     * @test
-     *
-     * @covers ::__construct
-     * @covers ::wrapping
-     * @covers ::now
-     * @covers ::floor
-     *
-     * @uses \Beste\Clock\FrozenClock
-     *
-     * @dataProvider dateTimeStringProvider
-     */
+    #[Test]
+    #[DataProvider('dateTimeStringProvider')]
     public function itDiscardsEverythingSmallerThanMinutes(string $format, string $input, string $expected): void
     {
-        $mockClock = $this->createMock(ClockInterface::class);
+        $mockClock = self::createStub(ClockInterface::class);
         $mockClock->method('now')->willReturn(new DateTimeImmutable($input));
 
         // Just to be sure that the test input is valid ^^
@@ -43,7 +36,7 @@ final class MinuteClockTest extends TestCase
     /**
      * @return array<string, string[]>
      */
-    public function dateTimeStringProvider(): array
+    public static function dateTimeStringProvider(): array
     {
         return [
             'microseconds' => [

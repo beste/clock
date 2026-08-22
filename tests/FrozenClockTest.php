@@ -6,21 +6,18 @@ namespace Beste\Clock\Tests;
 
 use Beste\Clock\FrozenClock;
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Clock\ClockInterface;
 
 /**
  * @internal
- * @coversDefaultClass \Beste\Clock\FrozenClock
  */
+#[CoversClass(FrozenClock::class)]
 final class FrozenClockTest extends TestCase
 {
-    /**
-     * @test
-     * @covers ::__construct
-     * @covers ::at
-     * @covers ::now
-     */
+    #[Test]
     public function itFreezesTime(): void
     {
         $now = new DateTimeImmutable('2021-03-21 22:16:00');
@@ -29,14 +26,7 @@ final class FrozenClockTest extends TestCase
         self::assertEquals($now, $clock->now());
     }
 
-    /**
-     * @test
-     *
-     * @uses ::__construct
-     * @uses ::fromUTC
-     *
-     * @covers ::now
-     */
+    #[Test]
     public function itReturnsAnEqualNowButNotTheSame(): void
     {
         $clock = FrozenClock::fromUTC();
@@ -48,14 +38,7 @@ final class FrozenClockTest extends TestCase
         self::assertNotSame($first, $second);
     }
 
-    /**
-     * @test
-     *
-     * @uses ::__construct
-     * @uses ::now
-     *
-     * @covers ::withNowFrom
-     */
+    #[Test]
     public function itFreezesTimeFromAnotherClock(): void
     {
         $now = new DateTimeImmutable('now');
@@ -71,14 +54,7 @@ final class FrozenClockTest extends TestCase
         self::assertEquals($now, $frozenClock->now());
     }
 
-    /**
-     * @test
-     *
-     * @uses ::__construct
-     * @uses ::now
-     *
-     * @covers ::fromUTC
-     */
+    #[Test]
     public function itFreezesTheCurrentUTCTime(): void
     {
         $clock = FrozenClock::fromUTC();
@@ -87,15 +63,7 @@ final class FrozenClockTest extends TestCase
         self::assertEquals($clock->now(), $clock->now());
     }
 
-    /**
-     * @test
-     *
-     * @uses ::__construct
-     * @uses ::at
-     * @uses ::now
-     *
-     * @covers ::setTo
-     */
+    #[Test]
     public function itCanBeSet(): void
     {
         $now = new DateTimeImmutable('2021-03-21 18:18:18');

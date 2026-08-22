@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Beste\Clock\Tests;
 
 use Beste\Clock\SystemClock;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversDefaultClass \Beste\Clock\SystemClock
  */
+#[CoversClass(SystemClock::class)]
 final class SystemClockTest extends TestCase
 {
     private string $defaultTimeZone;
@@ -25,13 +27,7 @@ final class SystemClockTest extends TestCase
         date_default_timezone_set($this->defaultTimeZone);
     }
 
-    /**
-     * @test
-     *
-     * @covers ::__construct
-     * @covers ::create
-     * @covers ::now
-     */
+    #[Test]
     public function itUsesTheSystemTimeZone(): void
     {
         $timeZone = 'Europe/Berlin';

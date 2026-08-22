@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Beste\Clock\Tests;
 
 use Beste\Clock\UTCClock;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversDefaultClass \Beste\Clock\UTCClock
  */
+#[CoversClass(UTCClock::class)]
 final class UTCClockTest extends TestCase
 {
     private string $defaultTimeZone;
@@ -25,13 +27,7 @@ final class UTCClockTest extends TestCase
         date_default_timezone_set($this->defaultTimeZone);
     }
 
-    /**
-     * @test
-     *
-     * @covers ::__construct
-     * @covers ::create
-     * @covers ::now
-     */
+    #[Test]
     public function itUsesUTCRegardlessOfTheSystemTimeZone(): void
     {
         date_default_timezone_set('Europe/Berlin');
