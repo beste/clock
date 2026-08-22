@@ -4,9 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - '1.x'
-      - '2.x'
-      - '3.x'
+      - '4.x'
 
 jobs:
   tests:
@@ -16,9 +14,6 @@ jobs:
     strategy:
       matrix:
         php:
-          - "8.0"
-          - "8.1"
-          - "8.2"
           - "8.3"
           - "8.4"
           - "8.5"

@@ -5,6 +5,8 @@
 Removed the deprecated `Beste\Clock` interface. Clock implementations now implement
 `Psr\Clock\ClockInterface` directly.
 
+Dropped support for PHP <8.3.
+
 ## 3.1.0 - 2026-08-22
 
 Deprecated `Beste\Clock` in favor of `Psr\Clock\ClockInterface`. The implementations continue to implement
