@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Beste\Clock;
 
-use Beste\Clock;
 use DateTimeImmutable;
 use DateTimeZone;
 use Psr\Clock\ClockInterface;
 
-final class FrozenClock implements Clock
+final class FrozenClock implements ClockInterface
 {
     private DateTimeImmutable $frozenAt;
 

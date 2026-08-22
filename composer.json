@@ -24,10 +24,7 @@
     "autoload": {
         "psr-4": {
             "Beste\\Clock\\": "src/Clock"
-        },
-        "files": [
-            "src/Clock.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {

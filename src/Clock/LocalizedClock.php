@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Beste\Clock;
 
-use Beste\Clock;
 use DateTimeImmutable;
 use DateTimeZone;
 use InvalidArgumentException;
+use Psr\Clock\ClockInterface;
 use Throwable;
 
-final class LocalizedClock implements Clock
+final class LocalizedClock implements ClockInterface
 {
     private DateTimeZone $timeZone;
 

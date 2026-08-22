@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Beste\Clock;
 
-use Beste\Clock;
 use DateTimeImmutable;
+use Psr\Clock\ClockInterface;
 
-final class SystemClock implements Clock
+final class SystemClock implements ClockInterface
 {
     private function __construct()
     {

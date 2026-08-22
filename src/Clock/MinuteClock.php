@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Beste\Clock;
 
-use Beste\Clock;
 use DateTimeImmutable;
 use Psr\Clock\ClockInterface;
 
-final class MinuteClock implements Clock
+final class MinuteClock implements ClockInterface
 {
     private ClockInterface $clock;
 

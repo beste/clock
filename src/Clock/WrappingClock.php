@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Beste\Clock;
 
-use Beste\Clock;
 use DateTimeImmutable;
 use InvalidArgumentException;
 use Psr\Clock\ClockInterface;
 
-final class WrappingClock implements Clock
+final class WrappingClock implements ClockInterface
 {
     private ClockInterface $wrappedClock;
 

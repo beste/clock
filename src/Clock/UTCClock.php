@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Beste\Clock;
 
-use Beste\Clock;
 use DateTimeImmutable;
 use DateTimeZone;
+use Psr\Clock\ClockInterface;
 
-final class UTCClock implements Clock
+final class UTCClock implements ClockInterface
 {
     private DateTimeZone $timeZone;
 

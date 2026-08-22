@@ -2,9 +2,12 @@
 
 ## Unreleased
 
+Removed the deprecated `Beste\Clock` interface. Clock implementations now implement
+`Psr\Clock\ClockInterface` directly.
+
 ## 3.1.0 - 2026-08-22
 
-Deprecates `Beste\Clock` in favor of `Psr\Clock\ClockInterface`. The implementations continue to implement
+Deprecated `Beste\Clock` in favor of `Psr\Clock\ClockInterface`. The implementations continue to implement
 the deprecated interface for backwards compatibility. Please type against `Psr\Clock\ClockInterface`.
 `Beste\Clock` will be removed in 4.0.
 
