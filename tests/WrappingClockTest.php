@@ -7,11 +7,13 @@ namespace Beste\Clock\Tests;
 use Beste\Clock\FrozenClock;
 use Beste\Clock\WrappingClock;
 use DateTimeImmutable;
+use DateTimeZone;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
+use UnexpectedValueException;
 
 /**
  * @internal
@@ -61,6 +63,29 @@ final class WrappingClockTest extends TestCase
     }
 
     #[Test]
+    public function itDoesNotCallNowWhileWrapping(): void
+    {
+        $clock = new class() {
+            public int $calls = 0;
+
+            public function now(): DateTimeImmutable
+            {
+                ++$this->calls;
+
+                return new DateTimeImmutable();
+            }
+        };
+
+        $wrappedClock = WrappingClock::wrapping($clock);
+
+        self::assertSame(0, $clock->calls);
+
+        $wrappedClock->now();
+
+        self::assertSame(1, $clock->calls);
+    }
+
+    #[Test]
     public function itRejectsObjectsWithANowMethodReturningANonDateTimeImmutable(): void
     {
         $clock = new class() {
@@ -70,8 +95,52 @@ final class WrappingClockTest extends TestCase
             }
         };
 
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(UnexpectedValueException::class);
         $this->expectExceptionMessage('$clock->now() must return a DateTimeImmutable');
+
+        WrappingClock::wrapping($clock)->now();
+    }
+
+    #[Test]
+    public function itRejectsObjectsWithoutANowMethod(): void
+    {
+        $clock = new class() {
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('$clock must implement Psr\Clock\ClockInterface or have a now() method');
+
+        WrappingClock::wrapping($clock);
+    }
+
+    #[Test]
+    public function itRejectsObjectsWithANonPublicNowMethod(): void
+    {
+        $clock = new class() {
+            protected function now(): DateTimeImmutable
+            {
+                return new DateTimeImmutable();
+            }
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('$clock->now() must be public and accept no required parameters');
+
+        WrappingClock::wrapping($clock);
+    }
+
+    #[Test]
+    public function itRejectsObjectsWithANowMethodRequiringArguments(): void
+    {
+        $clock = new class() {
+            public function now(string $timeZone): DateTimeImmutable
+            {
+                return new DateTimeImmutable('now', new DateTimeZone($timeZone));
+            }
+        };
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('$clock->now() must be public and accept no required parameters');
 
         WrappingClock::wrapping($clock);
     }
