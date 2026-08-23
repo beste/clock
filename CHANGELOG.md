@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 4.0.0 - 2026-08-23
+
 * Dropped support for PHP <8.3.
 * Removed the deprecated `Beste\Clock` interface. Clock implementations now implement 
   `Psr\Clock\ClockInterface` directly.
