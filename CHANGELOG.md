@@ -2,10 +2,12 @@
 
 ## Unreleased
 
-Removed the deprecated `Beste\Clock` interface. Clock implementations now implement
-`Psr\Clock\ClockInterface` directly.
-
-Dropped support for PHP <8.3.
+* Dropped support for PHP <8.3.
+* Removed the deprecated `Beste\Clock` interface. Clock implementations now implement 
+  `Psr\Clock\ClockInterface` directly.
+* `WrappingClock` will throw an `InvalidArgumentException` if the given object doesn't behave like
+  a PSR-20 clock and will throw an `UnexpectedValueException` if a later call does not return
+  `DateTimeImmutable`.
 
 ## 3.1.0 - 2026-08-22
 
