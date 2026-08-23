@@ -114,8 +114,8 @@ printf("\nAfter turning back the clock 5 minutes, it's %s", $frozenClock->now()-
 
 ### `MinuteClock`
 
-In some cases, microseconds, milliseconds, or even seconds are too precise for some use cases - sometimes it's just
-enough if something happened in the same minute. Using the minute
+In some cases, microseconds, milliseconds, or even seconds are too precise. Sometimes it is enough to know that
+something happened within the same minute. `MinuteClock` removes seconds and fractions of a second from another clock.
 
 ```php
 # examples/minute_clock.php
@@ -141,10 +141,8 @@ printf("For %s, the minute clock still returns %s\n",
 
 ### `WrappingClock`
 
-If you already have an object with a `now()` method returning a `DateTimeImmutable` object, you can wrap it 
-in a `WrappingClock` to make it a "real" Clock.
-
-as a "real" clock.
+If you already have an object with a `now()` method returning a `DateTimeImmutable`, you can wrap it in a
+`WrappingClock` to make it a PSR-20 clock.
 
 ```php
 # examples/wrapping_clock.php
