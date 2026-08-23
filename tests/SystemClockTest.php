@@ -30,7 +30,7 @@ final class SystemClockTest extends TestCase
     #[Test]
     public function itUsesTheSystemTimeZone(): void
     {
-        $timeZone = 'Europe/Berlin';
+        $timeZone = $this->defaultTimeZone === 'Europe/Berlin' ? 'UTC' : 'Europe/Berlin';
         self::assertNotSame($timeZone, $this->defaultTimeZone);
 
         date_default_timezone_set($timeZone);
