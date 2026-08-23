@@ -19,10 +19,7 @@ final class LocalizedClock implements ClockInterface
         $this->timeZone = $timeZone;
     }
 
-    /**
-     * @param DateTimeZone|string $timeZone
-     */
-    public static function in($timeZone): self
+    public static function in(DateTimeZone|string $timeZone): self
     {
         if (is_string($timeZone)) {
             try {
